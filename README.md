@@ -1,6 +1,6 @@
 # Project Euler's Rust Solutions
 
-Work In Progress
+[![Project Euler](https://projecteuler.net/profile/paulo-e.png)](https://projecteuler.net/)
 
 ## Building & Running
 
