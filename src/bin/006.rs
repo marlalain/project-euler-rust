@@ -26,11 +26,37 @@ fn square_of_sum(number: i64) -> i64 {
     sum * sum
 }
 
-fn main() {
+#[test]
+fn does_it_solve() {
+    solve();
+}
+
+#[test]
+fn is_less_than_time_limit() {
+    use std::time::SystemTime;
+    let now = SystemTime::now();
+    solve();
+    match now.elapsed() {
+        Ok(elapsed) => {
+            if elapsed.as_secs() > 60 {
+                panic!("Shouldn't take that long");
+            }
+        }
+        Err(e) => {
+            panic!("{:?}", e);
+        }
+    }
+}
+
+fn solve() {
     println!(
         "{} - {} = {}",
         sum_of_squares(100),
         square_of_sum(100),
         square_of_sum(100) - sum_of_squares(100)
     );
+}
+
+fn main() {
+    solve();
 }

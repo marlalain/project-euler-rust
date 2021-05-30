@@ -1,5 +1,3 @@
-// text
-
 fn is_prime(number: i64) -> bool {
     if number == 1 {
         return false;
@@ -17,7 +15,29 @@ fn is_prime(number: i64) -> bool {
     true
 }
 
-fn main() {
+#[test]
+fn does_it_solve() {
+    solve();
+}
+
+#[test]
+fn is_less_than_time_limit() {
+    use std::time::SystemTime;
+    let now = SystemTime::now();
+    solve();
+    match now.elapsed() {
+        Ok(elapsed) => {
+            if elapsed.as_secs() > 60 {
+                panic!("Shouldn't take that long");
+            }
+        }
+        Err(e) => {
+            panic!("{:?}", e);
+        }
+    }
+}
+
+fn solve() {
     let mut sum: i64 = 0;
     for n in 2..2000000 {
         if is_prime(n) {
@@ -25,4 +45,8 @@ fn main() {
         }
     }
     println!("Answer: {}", sum);
+}
+
+fn main() {
+    solve();
 }

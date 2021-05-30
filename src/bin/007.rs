@@ -2,7 +2,7 @@
 // and 13, we can see that the 6th prime is 13.
 // What is the 10 001st prime number?
 
-fn is_prime(number: i64) -> bool {
+pub fn is_prime(number: i64) -> bool {
     if number <= 1 {
         return false;
     }
@@ -11,7 +11,7 @@ fn is_prime(number: i64) -> bool {
             return false;
         }
     }
-    return true;
+    true
 }
 
 fn find_next_prime(mut number: i64) -> i64 {
@@ -23,7 +23,29 @@ fn find_next_prime(mut number: i64) -> i64 {
     }
 }
 
-fn main() {
+#[test]
+fn does_it_solve() {
+    solve();
+}
+
+#[test]
+fn is_less_than_time_limit() {
+    use std::time::SystemTime;
+    let now = SystemTime::now();
+    solve();
+    match now.elapsed() {
+        Ok(elapsed) => {
+            if elapsed.as_secs() > 60 {
+                panic!("Shouldn't take that long");
+            }
+        }
+        Err(e) => {
+            panic!("{:?}", e);
+        }
+    }
+}
+
+fn solve() {
     let mut answer: i64 = 0;
     let mut primes = Vec::new();
     while primes.len() != 10001 {
@@ -34,4 +56,8 @@ fn main() {
     }
 
     println!("\nThe answer is: {:?}", answer);
+}
+
+fn main() {
+    solve();
 }
