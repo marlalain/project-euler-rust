@@ -8,7 +8,29 @@ fn is_divisible(number: i32, other: i32) -> bool {
     number % other == 0
 }
 
-fn main() {
+#[test]
+fn does_it_solve() {
+    solve();
+}
+
+#[test]
+fn is_less_than_time_limit() {
+    use std::time::SystemTime;
+    let now = SystemTime::now();
+    solve();
+    match now.elapsed() {
+        Ok(elapsed) => {
+            if elapsed.as_secs() > 60 {
+                panic!("Shouldn't take that long");
+            }
+        }
+        Err(e) => {
+            panic!("{:?}", e);
+        }
+    }
+}
+
+fn solve() {
     let mut number: i32 = 1;
     let prompt: i32 = 20;
 
@@ -31,4 +53,8 @@ fn main() {
             std::process::exit(0);
         }
     }
+}
+
+fn main() {
+    solve();
 }
