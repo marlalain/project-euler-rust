@@ -9,19 +9,14 @@
 // hundred natural numbers and the square of the sum.
 
 fn sum_of_squares(number: i64) -> i64 {
-    let mut sum: i64 = 0;
-    for n in 0..number + 1 {
-        sum += n * n;
-    }
-
-    sum
+    (1..number + 1)
+      .map(|x| x * x)
+      .sum()
 }
 
 fn square_of_sum(number: i64) -> i64 {
-    let mut sum: i64 = 0;
-    for n in 0..number + 1 {
-        sum += n;
-    }
+    let sum: i64 = (0..number + 1)
+      .sum();
 
     sum * sum
 }
