@@ -51,7 +51,6 @@ fn solve() {
     while primes.len() != 10001 {
         answer = find_next_prime(answer);
         print!("\rTesting {:?}/10001: {:?}", primes.len() + 1, answer);
-        //println!("Testing {:?}/10001: {:?}", primes.len() + 1, answer);
         primes.push(answer);
     }
 
