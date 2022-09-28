@@ -45,14 +45,12 @@ fn fib(n: u128) -> u128 {
 }
 
 fn even_sum_fib_until(n: u128) -> u128 {
-	let mut done = false;
 	let mut sum: u128 = 0;
 	let mut x: u128 = 1;
 
-	while !done {
+	loop {
 		let f = fib(x);
 		if f > n {
-			done = true;
 			break;
 		} else if f % 2 == 0 {
 			sum += f;
