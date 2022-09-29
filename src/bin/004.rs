@@ -29,7 +29,7 @@ fn is_less_than_time_limit() {
 // A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.
 // Find the largest palindrome made from the product of two 3-digit numbers.
 
-fn is_palindrome(n: i64) -> bool {
+fn is_palindrome(n: u32) -> bool {
 	let mut r = n;
 	let d1 = r % 10;
 	r = (r - d1) / 10;
@@ -46,13 +46,16 @@ fn is_palindrome(n: i64) -> bool {
 	d1 == d6 && d2 == d5 && d3 == d4
 }
 
-fn until_palindrome(x: i64, y: i64) -> i64 {
-	let mut result: i64 = 0;
+fn until_palindrome(x: u32, y: u32) -> u32 {
+	let mut result: u32 = 0;
 	for i in (100..x).rev() {
 		for j in (100..y).rev() {
 			let r = i * j;
-			if is_palindrome(r) && r > result {
-				result = r;
+			if is_palindrome(r) {
+				if r > result {
+					result = r;
+				}
+				break;
 			}
 		}
 	}
