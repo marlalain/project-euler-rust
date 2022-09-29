@@ -46,17 +46,17 @@ fn is_palindrome(n: u32) -> bool {
 	d1 == d6 && d2 == d5 && d3 == d4
 }
 
-fn until_palindrome(x: u32, y: u32) -> u32 {
-	let mut result: u32 = 0;
+fn until_palindrome(x: u32, _y: u32) -> u32 {
+	let mut result: u32 = 10201;
 	for i in (100..x).rev() {
-		for j in (100..y).rev() {
-			let r = i * j;
-			if is_palindrome(r) {
-				if r > result {
-					result = r;
-				}
+		let mut j = i * i;
+		while j > result {
+			if is_palindrome(j) {
+				result = j;
 				break;
 			}
+
+			j -= i;
 		}
 	}
 
@@ -64,5 +64,5 @@ fn until_palindrome(x: u32, y: u32) -> u32 {
 }
 
 fn solve() {
-	print!("{}", until_palindrome(999, 999));
+	println!("{}", until_palindrome(999, 999));
 }
