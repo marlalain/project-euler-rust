@@ -14,7 +14,7 @@ fn is_less_than_time_limit() {
 	solve();
 	match now.elapsed() {
 		Ok(elapsed) => {
-			println!("took {}ms", elapsed.as_millis());
+			println!("\ntook {}μs", elapsed.as_micros());
 			if elapsed.as_secs() > 60 {
 				panic!("shouldn't take that long");
 			}
@@ -30,8 +30,20 @@ fn is_less_than_time_limit() {
 // Find the largest palindrome made from the product of two 3-digit numbers.
 
 fn is_palindrome(n: i64) -> bool {
-	let s = n.to_string();
-	s.chars().rev().collect::<String>() == s
+	let mut r = n;
+	let d1 = r % 10;
+	r = (r - d1) / 10;
+	let d2 = r % 10;
+	r = (r - d2) / 10;
+	let d3 = r % 10;
+	r = (r - d3) / 10;
+	let d4 = r % 10;
+	r = (r - d4) / 10;
+	let d5 = r % 10;
+	r = (r - d5) / 10;
+	let d6 = r % 10;
+
+	d1 == d6 && d2 == d5 && d3 == d4
 }
 
 fn until_palindrome(x: i64, y: i64) -> i64 {
@@ -49,5 +61,5 @@ fn until_palindrome(x: i64, y: i64) -> i64 {
 }
 
 fn solve() {
-	println!("{}", until_palindrome(999, 999));
+	print!("{}", until_palindrome(999, 999));
 }
